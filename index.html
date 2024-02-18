@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0%;
+      box-sizing: border-box;
+      font-family: sans-serif;
+      /* background-color: rgb(2, 90, 90); */
+    }
+    #container{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 50%;
+      background-color: rgb(243, 69, 69);
+      border:3px solid green;
+      position: relative;
+      left: 30%;
+      margin-top: 10%;
+    }
+
+    #innercontainer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      margin: 5px;
+      flex-wrap: wrap;
+      flex-grow: 1;
+
+    }
+    input,textarea{
+      margin: 3px;
+      width: 20rem;
+      height: 2em;
+      padding: 10px;
+      border-radius: 20px;
+      outline: none;
+      border-bottom: 2px solid rgb(8, 8, 8);
+      background-color: rgb(148, 187, 245);
+
+    }
+    #btn{
+      width: 100px;
+      height: 30px;
+      background-color: green;
+      border-radius: 20px;
+      border: 1px solid green;
+      box-shadow: black 2px 5px 5px 5px;
+      margin-top: 10px;
+    }
+    input,textarea:placeholder-shown{
+      
+      text-align: center;
+      font-size: medium;
+      font-weight: 500;
+      font-family: sans-serif;
+    
+    }
+
+   
+    @media screen and (max-width:400px) {
+  body {
+    background-color: rgb(39, 179, 243);
+    scroll-behavior: none;
+  }
+  input,textarea{
+    margin: 3px;
+      width: 10rem;
+      height: 2em;
+      padding: 10px;
+      border-radius: 20px;
+
+  }
+  #container{
+    padding: 60px;
+    margin-right: 100px;
+    background-color: rgb(114, 196, 196);
+  
+    
+  }
+
+ h1{
+  font-size: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular';
+  text-transform: uppercase;
+  position: absolute;
+  top: 20px;
+ }
+}
+
+  </style>
+</head>
+<body>
+  <div id="container">
+       
+
+         <form action="" id="innercontainer" onsubmit="Emailsend(); reset(); return false;">
+          <h1>contact form</h1>
+          <input type="text" id="name" placeholder="name">
+          <input type="text" id="number" placeholder="contact number">
+          <input type="text" id="email" placeholder="Email address" >
+          <textarea name="text area" id="textarea1" cols="20" rows="10" placeholder="enter any thought"></textarea>
+          <button id="btn" type="submit">submit</button>
+        </form>
+      
+  </div>
+  
+  <script src="https://smtpjs.com/v3/smtp.js">
+  </script>
+<script>
+  
+   
+  function Emailsend() {
+    
+    // Email.send({
+    //   Host : "smtp.elasticemail.com",
+    //   Username : "demo66779@gmail.com",
+    //   Password : "D95DAA3452CB8DABB3EDA2EBBFA0A19EE5E8",
+    //   To : 'demo6679@gmail.com',
+    //   From : document.getElementById("email").value ,
+    //   Subject : "This is the subject",
+    //   Body : "And this is the body"
+    // }).then(
+    //   message => alert(message)
+    //   );
+//   ------------------------------------------------------------------
+let name=document.getElementById('name').value;
+  let number=document.getElementById("number").value;
+  let email=document.getElementById("email").value;
+  let comment=document.getElementById("textarea1").value;
+  let ebody=`
+  <b>Name:</b>${name}
+  <br>
+   <b>Phone number</b>${number}
+   <br>
+   <b>Email:</b>${email}
+   <br>
+   <b>Comments:</b>${comment}
+   <br>`
+// ---------------------------------------------------------------------
+
+    Email.send({
+    SecureToken : "d35aa663-b52d-443a-b033-d70c870d308f",
+    To : 'dbalaji467@gmail.com',
+    From : "dbalaji467@gmail.com",
+    Subject : "This is the subject" +email,
+    Body : ebody
+}).then(
+  message => alert(message)
+);
+    }
+</script>  
+</body>
+</html>
